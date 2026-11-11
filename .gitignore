@@ -35,3 +35,6 @@ __pycache__
 *.xml
 *.yml
 *.pdf
+
+# Generated Python package metadata
+*.egg-info/
