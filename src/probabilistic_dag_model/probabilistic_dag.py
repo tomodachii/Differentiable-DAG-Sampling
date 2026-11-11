@@ -64,7 +64,8 @@ class ProbabilisticDAG(nn.Module):
             e.requires_grad = False
             e[zero_indices] = -300
             e.requires_grad = True
-        torch.diagonal(e).fill_(-300)
+        with torch.no_grad():
+            torch.diagonal(e).fill_(-300)
         self.edge_log_params = torch.nn.Parameter(e)
         if initial_adj is not None:
             self.edge_log_params.register_hook(lambda grad: grad * initial_adj.float())
